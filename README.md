@@ -118,9 +118,6 @@ result <- tryCatch({
 print(result)
 ```
 
-### Sample post async call with file attachment (PREDICT API)
-TODO
-
 ### Sample post async call with multiple file attachments (Text Extraction API)
 
 ``` R
