@@ -121,7 +121,8 @@ HODClient <- function(apikey = NULL, version = HODClientConstants$DEFAULT_VERSIO
 
     # Get status of the job submitted
     # @param jobId id of the job submitted
-    getJobStatus = function(jobID) {
+    getJobStatus = function(jobID)
+    {
 
       jobStatusUrl = me$getJobStatusURLString()
 
