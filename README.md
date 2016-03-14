@@ -165,7 +165,7 @@ print(result)
 ``` 
 
 ### Index management.
-This code illustrates how to create, add to, and query index. This code is also explained in the Wiki: [https://github.com/chok68/havenondemand-r/wiki](https://github.com/chok68/havenondemand-r/wiki)
+This code illustrates how to create, add to, and query index. This code is also explained in the Wiki: [https://github.com/chok68/havenondemand-r/wiki/Hello-World-R-Script](https://github.com/chok68/havenondemand-r/wiki/Hello-World-R-Script)
 
 ``` R
 # include havenondemand library
