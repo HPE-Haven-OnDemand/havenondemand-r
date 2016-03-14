@@ -43,6 +43,7 @@ client <- HODClient(apikey = "your-api-key", version = "v1")
 # with apikey (version will default to v1)
 client <- HODClient(apikey = "your-api-key")
 ```
+
 ### Sample post sync call (INDEX_STATUS)
 
 ``` R
@@ -162,6 +163,49 @@ result <- tryCatch({
 # print result
 print(result)
 ``` 
+
+### Index management.
+This code illustrates how to create, add to, and query index.
+
+``` R
+# include havenondemand library
+library(havenondemand)
+
+# initialize HOD Client
+client <- HODClient(apikey = "0ba06d23-d053-4b1f-802f-ef296cf25ac7")
+
+result <- tryCatch({
+
+    # STEP 1: call create text index (this call is required one time only per index life)
+    client$post(params = list(index = "myindex", flavor = "explorer"), hodApp = HODApp$CREATE_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+
+    # STEP 2: call add to text index (we're indexing this entry: https://en.wikipedia.org/wiki/Hewlett_Packard_Enterprise_Software)
+    client$post(params = list(url = "https://en.wikipedia.org/wiki/Hewlett_Packard_Enterprise_Software", index = "myindex"), hodApp = HODApp$ADD_TO_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+
+    # STEP 3: call add to text index (we're indexing this entry: https://en.wikipedia.org/wiki/HP_Information_Management_Software)
+    client$post(params = list(url = "https://en.wikipedia.org/wiki/HP_Information_Management_Software", index = "myindex"), hodApp = HODApp$ADD_TO_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+
+    # STEP 4: query text index
+    r <- client$post(params = list(text = "their applications and databases are growing", indexes = "myindex"), hodApp = HODApp$QUERY_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+    d = httr::content(r, 'parsed')$documents
+
+    # STEP 5: show the reference that matched our search
+    print(d[[1]]$reference)
+
+}, warning = function(w) {
+    print('Warning block called.')
+}, error = function(e) {
+    print('Error block called.')
+    print(e)
+}, finally = {
+    print('Finally block called.')
+})
+
+
+
+```
+
+
 ### Error Handling
 
 All the calls call stop(message) if an error is detected:
@@ -215,3 +259,4 @@ result <- tryCatch({
 
 ## Contributing
 TODO: Pending from HPE Ondemand team
+
