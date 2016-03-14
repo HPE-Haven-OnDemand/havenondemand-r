@@ -172,7 +172,7 @@ This code illustrates how to create, add to, and query index.
 library(havenondemand)
 
 # initialize HOD Client
-client <- HODClient(apikey = "0ba06d23-d053-4b1f-802f-ef296cf25ac7")
+client <- HODClient(apikey = "your-api-key")
 
 result <- tryCatch({
 
