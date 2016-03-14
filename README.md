@@ -63,7 +63,7 @@ client <- HODClient(apikey = "your-api-key")
 # call that result in error ('ur' parameter is wrong, it should be 'url')
 
 result <- tryCatch({
-    client$post(params = list(index = "test"), hodApp = HODApp$INDEX_STATUS, mode = HODClientConstants$REQUEST_MODE$SYNC)
+    client$postRequest(params = list(index = "test"), hodApp = HODApp$INDEX_STATUS, mode = HODClientConstants$REQUEST_MODE$SYNC)
 }, warning = function(w) {
     print('Warning block called.')
 }, error = function(e) {
@@ -165,7 +165,7 @@ print(result)
 ``` 
 
 ### Index management.
-This code illustrates how to create, add to, and query index.
+This code illustrates how to create, add to, and query index. This code is also explained in the Wiki: [https://github.com/chok68/havenondemand-r/wiki](https://github.com/chok68/havenondemand-r/wiki)
 
 ``` R
 # include havenondemand library
@@ -176,17 +176,24 @@ client <- HODClient(apikey = "your-api-key")
 
 result <- tryCatch({
 
-    # STEP 1: call create text index (this call is required one time only per index life)
-    client$post(params = list(index = "myindex", flavor = "explorer"), hodApp = HODApp$CREATE_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+    # STEP 1: call create text index (this call is required
+    #    one time only per index life)
+    client$postRequest(params = list(index = "myindex", flavor = "explorer"), hodApp = HODApp$CREATE_TEXT_INDEX,
+       mode = HODClientConstants$REQUEST_MODE$SYNC)
 
-    # STEP 2: call add to text index (we're indexing this entry: https://en.wikipedia.org/wiki/Hewlett_Packard_Enterprise_Software)
-    client$post(params = list(url = "https://en.wikipedia.org/wiki/Hewlett_Packard_Enterprise_Software", index = "myindex"), hodApp = HODApp$ADD_TO_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+    # STEP 2: call add to text index (we're indexing this entry:
+    #    https://en.wikipedia.org/wiki/Hewlett_Packard_Enterprise_Software
+    client$postRequest(params = list(url = "https://en.wikipedia.org/wiki/Hewlett_Packard_Enterprise_Software",
+       index = "myindex"), hodApp = HODApp$ADD_TO_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
 
-    # STEP 3: call add to text index (we're indexing this entry: https://en.wikipedia.org/wiki/HP_Information_Management_Software)
-    client$post(params = list(url = "https://en.wikipedia.org/wiki/HP_Information_Management_Software", index = "myindex"), hodApp = HODApp$ADD_TO_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+    # STEP 3: call add to text index (we're indexing this entry:
+    #    https://en.wikipedia.org/wiki/HP_Information_Management_Software
+    client$postRequest(params = list(url = "https://en.wikipedia.org/wiki/HP_Information_Management_Software",
+        index = "myindex"), hodApp = HODApp$ADD_TO_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
 
     # STEP 4: query text index
-    r <- client$post(params = list(text = "their applications and databases are growing", indexes = "myindex"), hodApp = HODApp$QUERY_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
+    r <- client$postRequest(params = list(text = "their applications and databases are growing", 
+        indexes = "myindex"), hodApp = HODApp$QUERY_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
     d = httr::content(r, 'parsed')$documents
 
     # STEP 5: show the reference that matched our search
@@ -200,9 +207,6 @@ result <- tryCatch({
 }, finally = {
     print('Finally block called.')
 })
-
-
-
 ```
 
 
@@ -259,4 +263,5 @@ result <- tryCatch({
 
 ## Contributing
 TODO: Pending from HPE Ondemand team
+
 
