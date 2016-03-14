@@ -2,7 +2,7 @@
 
 ----
 ## Overview
-This library can be used to consume [HPE Haven OnDemand - https://dev.havenondemand.com/apis](https://dev.havenondemand.com/apis) in Salesforce.
+This library can be used to consume [HPE Haven OnDemand - https://dev.havenondemand.com/apis](https://dev.havenondemand.com/apis) from R language scripts.
 
 ----
 ## What is HAVEN ONDEMAND?
@@ -57,7 +57,7 @@ client <- HODClient(apikey = apikey)
 library(havenondemand)
 
 # initialize HOD Client
-client <- HODClient(apikey = "0ba06d23-d053-4b1f-802f-ef296cf25ac7")
+client <- HODClient(apikey = "your-api-key")
 
 # call that result in error ('ur' parameter is wrong, it should be 'url')
 
@@ -83,7 +83,7 @@ print(result)
 library(havenondemand)
 
 # initialize HOD Client
-client <- HODClient(apikey = "0ba06d23-d053-4b1f-802f-ef296cf25ac7")
+client <- HODClient(apikey = "your-api-key")
 
 result <- tryCatch({
 
@@ -119,26 +119,7 @@ print(result)
 ```
 
 ### Sample post async call with file attachment (PREDICT API)
-
-``` Apex
-try{
-      HODClient client = new HODClient(apiKey, version);
-      // list of Param has to be passed for request with file attachment
-      List<Param> params = new List<Param>();
-      params.add(new Param('test.csv',Blob.valueOf(csvString),'application/CSV'));
-      params.add(new Param('service_name','test'));
-      // call API
-      Map<String,Object> data = client.postRequest(params, HODAPP.PREDICT, HODClientConstants.REQ_MODE.ASYNC);
-      String jobId = data.get(HODClientConstants.JOB_ID);
-}
-catch (HODClientException ex)
-{
-     String message = ex.getMessage();
-     System.debug(message);
-}
-
-
-```
+TODO
 
 ### Sample post async call with multiple file attachments (Text Extraction API)
 
@@ -147,7 +128,7 @@ catch (HODClientException ex)
 library(havenondemand)
 
 # initialize HOD Client
-client <- HODClient(apikey = "0ba06d23-d053-4b1f-802f-ef296cf25ac7")
+client <- HODClient(apikey = "your-api-key")
 
 result <- tryCatch({
 
@@ -192,7 +173,7 @@ All the calls call stop(message) if an error is detected:
 library(havenondemand)
 
 # initialize HOD Client
-client <- HODClient(apikey = "0ba06d23-d053-4b1f-802f-ef296cf25ac7")
+client <- HODClient(apikey = "your-api-key")
 
 # call that result in error ('ur' parameter is wrong, it should be 'url')
 
