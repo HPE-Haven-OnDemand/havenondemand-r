@@ -1,0 +1,10 @@
+Package: havenondemand
+Type: Package
+Title: HPE Haven OnDemand R Language Client Library - POST requests
+Version: 0.1.0
+Author: TCDEVELOPER
+Maintainer: Developer <contact@topcoder.com>
+Description: Client library responsible for making POST requests to the HPE Haven OnDemand APIs, checking on the status of an asynchronous request, and the response parser.
+License: MIT License
+LazyData: TRUE
+Imports: httr, curl
