@@ -113,10 +113,12 @@ HODClient <- function(apikey = NULL, version = HODClientConstants$DEFAULT_VERSIO
 
       # error checking
       errorCode = httr::content(response, 'parsed')$error
-
       if (any(!is.null(errorCode), errorCode > 0)) stop (paste('Error detected. Reason: ', httr::content(response, 'parsed')$reason, 'Detail:', httr::content(response, 'parsed')$detail))
 
-      return(response)
+      # parse response (not done before error checking as parsing can fail)
+      parsedResponse = httr::content(response, 'parsed')
+
+      return(parsedResponse)
     },
 
     # Get status of the job submitted

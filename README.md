@@ -94,7 +94,7 @@ result <- tryCatch({
            , hodApp = HODApp$LIST_RESOURCES, mode = HODClientConstants$REQUEST_MODE$ASYNC)
 
     # get job id
-    jobID = httr::content(r, 'parsed')$jobID
+    jobID = r$jobID
     print (jobID)
 
     # check job status using the getJobStatus method call
@@ -139,7 +139,7 @@ result <- tryCatch({
            , hodApp = HODApp$TEXT_EXTRACTION, mode = HODClientConstants$REQUEST_MODE$ASYNC)
 
     # get job id
-    jobID = httr::content(r, 'parsed')$jobID
+    jobID = r$jobID
     print (jobID)
 
     # check job status using the getJobStatus method call
@@ -194,9 +194,9 @@ result <- tryCatch({
     # STEP 4: query text index
     r <- client$postRequest(params = list(text = "their applications and databases are growing", 
         indexes = "myindex"), hodApp = HODApp$QUERY_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
-    d = httr::content(r, 'parsed')$documents
+    d = r$documents
 
-    # STEP 5: show the reference that matched our search
+    # STEP 5: show the reference (for document index=1) that matched our search
     print(d[[1]]$reference)
 
 }, warning = function(w) {
