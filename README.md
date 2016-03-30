@@ -89,7 +89,7 @@ client <- HODClient(apikey = "your-api-key")
 result <- tryCatch({
 
     # create client get job id
-    r <- client$postRequest(params = 
+    r <- client$postRequest(params =
            list(flavor = 'standard', flavor = 'explorer', type = 'content', type = 'connector')
            , hodApp = HODApp$LIST_RESOURCES, mode = HODClientConstants$REQUEST_MODE$ASYNC)
 
@@ -162,7 +162,7 @@ result <- tryCatch({
 
 # print result
 print(result)
-``` 
+```
 
 ### Index management.
 This code illustrates how to create, add to, and query index. This code is also explained in the Wiki: [https://github.com/chok68/havenondemand-r/wiki/Hello-World-R-Script](https://github.com/chok68/havenondemand-r/wiki/Hello-World-R-Script)
@@ -192,7 +192,7 @@ result <- tryCatch({
         index = "myindex"), hodApp = HODApp$ADD_TO_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
 
     # STEP 4: query text index
-    r <- client$postRequest(params = list(text = "their applications and databases are growing", 
+    r <- client$postRequest(params = list(text = "their applications and databases are growing",
         indexes = "myindex"), hodApp = HODApp$QUERY_TEXT_INDEX, mode = HODClientConstants$REQUEST_MODE$SYNC)
     d = r$documents
 
@@ -262,6 +262,10 @@ result <- tryCatch({
 ```
 
 ## Contributing
-TODO: Pending from HPE Ondemand team
+We encourage you to contribute to this repo! Please send pull requests with modified and updated code.
 
-
+1. Fork it ( https://github.com/HPE-Haven-OnDemand/havenondemand-r/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create a new Pull Request
